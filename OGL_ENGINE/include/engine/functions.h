@@ -172,124 +172,83 @@ void actionKeys(GLFWwindow *window)
         }
 
         //TRANSLACIÓN DEL MODELO X
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_1) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_H) == GLFW_PRESS)
         {
             posModel = models[indexObject].getPosition();
             posModel.x -= movement;
             models[indexObject].setPosition(posModel);
         }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_4) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_K) == GLFW_PRESS)
         {
             posModel = models[indexObject].getPosition();
             posModel.x += movement;
             models[indexObject].setPosition(posModel);
         }
         //TRANSLACIÓN DEL MODELO Y
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_2) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
         {
             posModel = models[indexObject].getPosition();
             posModel.y -= movement;
             models[indexObject].setPosition(posModel);
         }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_5) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_C) == GLFW_PRESS)
         {
             posModel = models[indexObject].getPosition();
             posModel.y += movement;
             models[indexObject].setPosition(posModel);
         }
         //TRANSLACIÓN DEL MODELO Z
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_3) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_U) == GLFW_PRESS)
         {
             posModel = models[indexObject].getPosition();
             posModel.z -= movement;
             models[indexObject].setPosition(posModel);
         }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_ALT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_6) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_M) == GLFW_PRESS)
         {
             posModel = models[indexObject].getPosition();
             posModel.z += movement;
             models[indexObject].setPosition(posModel);
         }
         //ROTACIÓN DEL MODELO X
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_1) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_4) == GLFW_PRESS)
         {
             rotationModel = models[indexObject].getAngles();
             rotationModel.x -= 1.0;
             models[indexObject].setAngles(rotationModel);
         }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_4) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_5) == GLFW_PRESS)
         {
             rotationModel = models[indexObject].getAngles();
             rotationModel.x += 1.0;
             models[indexObject].setAngles(rotationModel);
         }
         //ROTACIÓN DEL MODELO Y
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_2) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_6) == GLFW_PRESS)
         {
             rotationModel = models[indexObject].getAngles();
             rotationModel.y -= 1.0;
             models[indexObject].setAngles(rotationModel);
         }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_5) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_7) == GLFW_PRESS)
         {
             rotationModel = models[indexObject].getAngles();
             rotationModel.y += 1.0;
             models[indexObject].setAngles(rotationModel);
         }
         //ROTACIÓN DEL MODELO Z
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_3) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_8) == GLFW_PRESS)
         {
             rotationModel = models[indexObject].getAngles();
             rotationModel.z -= 1.0;
             models[indexObject].setAngles(rotationModel);
         }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_6) == GLFW_PRESS)
+        if (glfwGetKey(window, GLFW_KEY_9) == GLFW_PRESS)
         {
             rotationModel = models[indexObject].getAngles();
             rotationModel.z += 1.0;
             models[indexObject].setAngles(rotationModel);
         }
-
-         //ESCALA DEL MODELO X
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_1) == GLFW_PRESS)
-        {
-            scaleModel = models[indexObject].getScale();
-            scaleModel.x -= movement;
-            models[indexObject].setScale(scaleModel);
-        }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_4) == GLFW_PRESS)
-        {
-            scaleModel = models[indexObject].getScale();
-            scaleModel.x += movement;
-            models[indexObject].setScale(scaleModel);
-        }
-        //ESCALA DEL MODELO Y
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_2) == GLFW_PRESS)
-        {
-            scaleModel = models[indexObject].getScale();
-            scaleModel.y -= movement;
-            models[indexObject].setScale(scaleModel);
-        }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_5) == GLFW_PRESS)
-        {
-            scaleModel = models[indexObject].getScale();
-            scaleModel.y += movement;
-            models[indexObject].setScale(scaleModel);
-        }
-        //ESCALA DEL MODELO Z
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_3) == GLFW_PRESS)
-        {
-            scaleModel = models[indexObject].getScale();
-            scaleModel.z -= movement;
-            models[indexObject].setScale(scaleModel);
-        }
-        if ( glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS && glfwGetKey(window, GLFW_KEY_KP_6) == GLFW_PRESS)
-        {
-            scaleModel = models[indexObject].getScale();
-            scaleModel.z += movement;
-            models[indexObject].setScale(scaleModel);
-        }
-
         //IMPRIMIR EN CONSOLA
         if (glfwGetKey(window, GLFW_KEY_P) == GLFW_PRESS)
         {
@@ -297,9 +256,7 @@ void actionKeys(GLFWwindow *window)
             for (int i = 0; i < models.size(); i++)
             {
                 glm::vec3 mPos = models[i].getPosition();
-                glm::vec3 mScl = models[i].getScale();
                 glm::vec3 mRot = models[i].getAngles();
-
                 float tx = mPos.x;
                 float ty = mPos.y;
                 float tz = mPos.z;
@@ -307,16 +264,7 @@ void actionKeys(GLFWwindow *window)
                 float rx = mRot.x;
                 float ry = mRot.y;
                 float rz = mRot.z;
-
-                float sx = mScl.x;
-                float sy = mScl.y;
-                float sz = mScl.z;
-
-                cout << "\nmodels.push_back(Model(\"" << models[i].name 
-                << "\",\"" << models[i].path 
-                << "\", glm::vec3(" << tx << ", " << ty << "," << tz << "), "<<
-                "glm::vec3(" << rx << ", " << ry << ", " << rz << "), 0.0f, " <<
-                "glm::vec3(" << sx << ", " << sy << ", " << sz << "))); " << endl;
+                cout << "\nmodels.push_back(Model(\"" << models[i].name << "\",\"" << models[i].path << "\", glm::vec3(" << tx << ", " << ty << "," << tz << "), glm::vec3(" << rx << ", " << ry << "," << rz << "), 0.0f, initScale));" << endl;
             }
         }
     }

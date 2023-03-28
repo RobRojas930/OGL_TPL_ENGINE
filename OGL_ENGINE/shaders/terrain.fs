@@ -93,11 +93,9 @@ vec4 CalcAllLights()
      else if(lightType == 2)
         for(int i = 0; i < maxRenderLights; i++)
             result += CalcDirLight(dirLights[i] , norm, viewDir);
-     
      else if(lightType == 3)
         for(int i = 0; i < maxRenderLights; i++)
             result += CalcSpotLight(spotLights[i], norm, FragPos, viewDir);   
-     
      else if(lightType == 4)
         for(int i = 0; i < maxRenderLights; i++)
             result += CalcPointLight(pointLights[i], norm, FragPos, viewDir); 

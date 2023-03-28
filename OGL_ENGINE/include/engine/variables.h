@@ -5,7 +5,6 @@
 #include <engine/Objectives.h>
 #include <engine/Particles.h>
 #include <engine/Plane.h>
-#include <engine/model.h>
 #include <engine/QuadTexture.h>
 #include <engine/RigidModel.h>
 #include <engine/Terrain.h>
@@ -88,7 +87,6 @@ Camera camera(glm::vec3(2.0f, 1.5f, 4.0f));
 glm::vec3 force(0);
 glm::vec3 posModel(0);
 glm::vec3 rotationModel(0);
-glm::vec3 scaleModel(0);
 glm::vec3 scaleCollBox(0);
 glm::vec3 skyPos(0);
 glm::vec3 lightPos(1.2f, 1.0f, 2.0f);

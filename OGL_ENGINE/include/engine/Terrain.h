@@ -24,7 +24,7 @@ private:
 	float **heights;
 	std::vector<SimpleVertex> vertices;
 	std::vector<int> indices;
-	Shader *shader;
+	Shader *shader;	
 
 	void createVertexData(const char *imagePath)
 	{
@@ -102,10 +102,10 @@ private:
 public:
 	Terrain()
 	{
+
 	}
 	Terrain(const char *imagePath, const char **texturePaths)
 	{
-
 		createVertexData(imagePath);
 		createIndexData();
 		shader = new Shader("shaders/terrain.vs", "shaders/terrain.fs");
@@ -122,17 +122,17 @@ public:
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size() * sizeof(int), &indices.front(), GL_STATIC_DRAW);
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid *)0);
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid*)0);
 		glEnableVertexAttribArray(0);
 
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid *)offsetof(SimpleVertex, SimpleVertex::TexCoords));
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid*)offsetof(SimpleVertex, SimpleVertex::TexCoords));
 		glEnableVertexAttribArray(1);
 
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid *)offsetof(SimpleVertex, SimpleVertex::Normal));
+		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (GLvoid*)offsetof(SimpleVertex, SimpleVertex::Normal));
 		glEnableVertexAttribArray(2);
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glBindVertexArray(0);
+        glBindVertexArray(0);
 
 		for (int i = 0; i < 4; i++)
 			textures[i] = loadTextures(texturePaths[i]);
@@ -178,24 +178,27 @@ public:
 		shader->setMat4("projection", projection);
 
 		glBindVertexArray(VAO);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, textures[0]);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, textures[1]);
-		glActiveTexture(GL_TEXTURE2);
-		glBindTexture(GL_TEXTURE_2D, textures[2]);
-		glActiveTexture(GL_TEXTURE3);
-		glBindTexture(GL_TEXTURE_2D, textures[3]);
-
-		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);
+		//for (int i = 0; i < sizeof(textures) / sizeof(unsigned int); i++)
+		//{
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, textures[0]);
+			glActiveTexture(GL_TEXTURE1);
+			glBindTexture(GL_TEXTURE_2D, textures[1]);
+			glActiveTexture(GL_TEXTURE2);
+			glBindTexture(GL_TEXTURE_2D, textures[2]);
+			glActiveTexture(GL_TEXTURE3);
+			glBindTexture(GL_TEXTURE_2D, textures[3]);
+		//}
+		glDrawElements(GL_TRIANGLES, indices.size(), GL_UNSIGNED_INT, 0);		
 	}
+
 
 	int getHeight()
 	{
 		return height;
 	}
 
-	Shader *getShader()
+	Shader* getShader()
 	{
 		return shader;
 	}

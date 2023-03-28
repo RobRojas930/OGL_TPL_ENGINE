@@ -3,7 +3,6 @@
 #include <engine/Billboard.h>
 #include <engine/CollisionBox.h>
 #include <engine/Objectives.h>
-#include <engine/Model.h>
 #include <engine/Particles.h>
 #include <engine/Plane.h>
 #include <engine/QuadTexture.h>
@@ -155,7 +154,7 @@ void initScene(Shader ourShader)
        
 
     //:::: INICIALIZAMOS NUESTROS MODELOS :::://    
-    models.push_back(Model("zanahoria", "models/zanahoria.obj", glm::vec3(5.3, 0.5, -4.3), glm::vec3(0, 90, 0), 0.0f, initScale));
+    models.push_back(Model("carrorojo", "models/CarroRojo.obj", glm::vec3(5.3, 0.5, -4.3), glm::vec3(0, 90, 0), 0.0f, initScale));
     models.push_back(Model("carroazul", "models/CarroAzul.obj", glm::vec3(-9.6, 0.7, -2), glm::vec3(0, 0, 0), 0.0f, initScale));
     models.push_back(Model("van", "models/Van.obj", glm::vec3(12, 0.8, -4.5), glm::vec3(0, 90, 0), 0.0f, initScale));
    
@@ -210,7 +209,7 @@ void loadEnviroment(Terrain *terrain, SkyBox *sky, glm::mat4 view, glm::mat4 pro
     if (renderLightingCubes)
         for (pair<int, pair<string, CollisionBox>> lights : lightcubes)
             lights.second.second.draw(view, projection);
-
+    
 }
 void drawModels(Shader *shader, glm::mat4 view, glm::mat4 projection)
 {
@@ -219,6 +218,7 @@ void drawModels(Shader *shader, glm::mat4 view, glm::mat4 projection)
     setMultipleLight(shader, pointLightPositions);   
     for (int i = 0; i < models.size(); i++)
     {
+        //SI SE RECOGIO EL OBJETO
         shader->use();
         models[i].Draw(*shader);
         detectColls(&models[i].collbox, models[i].name, &camera, renderCollBox, collidedObject_callback);
@@ -343,7 +343,7 @@ void setMultipleLight(Shader *shader, vector<glm::vec3> pointLightPositions)
     shader->setFloat("spotLights[3].outerCutOff", glm::cos(glm::radians(15.0f)));
 
     shader->setInt("lightType", (int)lightType);
-    shader->setInt("maxRenderLights", 4);
+    shader->setInt("maxRenderLights", 1);
 }
 
 
