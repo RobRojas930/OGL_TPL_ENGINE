@@ -15,6 +15,12 @@
 #include <glad/glad.h>
 #include <iostream>
 
+
+
+#include <engine/animator.h>
+#include <engine/model_animation.h>
+
+
 int main()
 {
     //:::: INICIALIZAMOS GLFW CON LA VERSIÓN 3.3 :::://
@@ -60,6 +66,12 @@ int main()
     SkyBox sky(1.0f, "1");
     cb = isCollBoxModel ? &models[indexCollBox].collbox : &collboxes.at(indexCollBox).second;
 
+    Shader ourShader2("shaders/anim_model.vs", "shaders/anim_model.fs");
+    // load models
+    // -----------
+    ModelAnimation ourModel("models/vampire/dancing_vampire.dae");
+    Animation danceAnimation("models/vampire/dancing_vampire.dae", &ourModel);
+    Animator animator(&danceAnimation);
     //:::: RENDER:::://
     while (!glfwWindowShouldClose(window))
     {
@@ -77,6 +89,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //:::: PASAMOS INFORMACIÓN AL SHADER:::://
         ourShader.use();
+       
 
         //:::: DEFINICIÓN DE MATRICES::::// La multiplicaciónd e model*view*projection crea nuestro entorno 3D
         glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom),
@@ -87,8 +100,27 @@ int main()
 
         //:::: RENDER DE MODELOS:::://
         drawModels(&ourShader, view, projection);
+      
+        // 
         //:::: SKYBOX Y TERRENO:::://
         loadEnviroment(&terrain, &sky, view, projection);
+
+        //:::::: ANIMACIÓN ESQUELETICA ::::://
+        ourShader.notUse();
+        ourShader2.use();
+        auto transforms = animator.GetFinalBoneMatrices();
+        for (int i = 0; i < transforms.size(); ++i)
+            ourShader2.setMat4("finalBonesMatrices[" + std::to_string(i) + "]", transforms[i]);
+
+
+        // render the loaded model
+        glm::mat4 modelAnim = glm::mat4(1.0f);
+        modelAnim = glm::translate(modelAnim, glm::vec3(0.0f, -0.4f, 0.0f)); // translate it down so it's at the center of the scene
+        modelAnim = glm::scale(modelAnim, glm::vec3(.5f, .5f, .5f));	// it's a bit too big for our scene, so scale it down
+        ourShader2.setMat4("model", modelAnim);
+        ourModel.Draw(ourShader);
+        ourShader2.notUse();
+
         //:::: COLISIONES :::://
         collisions();
         glfwSwapBuffers(window);
@@ -223,6 +255,8 @@ void drawModels(Shader *shader, glm::mat4 view, glm::mat4 projection)
         models[i].Draw(*shader);
         detectColls(&models[i].collbox, models[i].name, &camera, renderCollBox, collidedObject_callback);
     }
+
+
 }
 
 void setSimpleLight(Shader *shader)

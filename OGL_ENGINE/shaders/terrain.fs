@@ -198,10 +198,11 @@ vec4 CalcSpotLight(SpotLight light, vec3 normal, vec3 fragPos, vec3 viewDir)
 vec4 CalcFlatColor(DirLight light)
 {
     vec4 ambient, diffuse, specular;
-	text1 = texture( texture1, TexCoords);
-	text2 = texture( texture2, TexCoords*30);
-	text3 = texture( texture3, TexCoords*30);
-	text4 = texture( texture4, TexCoords*30);
+	text1 = texture( texture1, TexCoords); //blend map
+	
+    text2 = texture( texture2, TexCoords*30); //pasto
+	text3 = texture( texture3, TexCoords*30); //tierra
+	text4 = texture( texture4, TexCoords*30); //arena
 	//suma las tres texturas para dar el multitextura
 	vec4 color_final = text2 * text1.r + text3 * text1.g +text4 * text1.b;
 	ambient = vec4(light.ambient,1.0) * color_final;
